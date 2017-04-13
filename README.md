@@ -23,6 +23,7 @@ in series, adding additional distortion. The POS and NEG parameters affect the c
 positive and negative values, adding asymmetry. 
 The Inver button will invert the distortion curves between each stage, creating a different type of sound. This
 can be best heard, when the POS and NEG parameters are opposite in value, i.e. POS is 0.1 and NEG is 10, or vice versa.
+The gain controls can be used to reduce the added volume from distortion.
 
 -------------------------------------------------------------------------------------------------------------------------------
 

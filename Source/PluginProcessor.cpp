@@ -239,24 +239,28 @@ void NonLinearAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffe
 	// contain the audio for one channel.  You repeat this for each channel     
 	float *channelDataL = buffer.getWritePointer(0);
 	float *channelDataR = buffer.getWritePointer(1);
+	
+	//-------------Start of Distortion Code----------------------------------------------------------------------------------------------------------
 
-	if (singleChannel == false) {
-		if (channelSwap == false) {
-			for (int i = 0; i < numSamples; ++i)
+	//2 nested if statements in another if statement control channel swapping
+
+	if (singleChannel == false) {  //checking button for Single or Dual channel
+		if (channelSwap == false) {  //checking button for channel swap
+			for (int i = 0; i < numSamples; ++i)  //running the loop based on number of samples in block
 			{
 
-				for (int j = 0; j < stagesLposition; j++)
+				for (int j = 0; j < stagesLposition; j++)   //running loop based on number of stages, to apply algorithm multiple times for more distortion
 				{
 					if (channelDataL[i] >= 0)
-						channelDataL[i] = ((1.0 / atan(arcTanPosLposition)) * atan(arcTanPosLposition*channelDataL[i])*gainLposition);
+						channelDataL[i] = ((1.0 / atan(arcTanPosLposition)) * atan(arcTanPosLposition*channelDataL[i])*gainLposition);  //positive side of arctan function
 					else
-						channelDataL[i] = ((1.0 / atan(arcTanNegLposition)) * atan(arcTanNegLposition*channelDataL[i])*gainLposition);
-					if (stagesL == true && j % 2 == 0) {
+						channelDataL[i] = ((1.0 / atan(arcTanNegLposition)) * atan(arcTanNegLposition*channelDataL[i])*gainLposition);  //negative side of arctan function
+					if (stagesL == true && j % 2 == 0) { //inverting every other stage if button is pressed
 						channelDataL[i] *= -1.0;
 					}
 				}
 			}
-			for (int i = 0; i < numSamples; ++i)
+			for (int i = 0; i < numSamples; ++i)  //same as above, but for the right channel
 			{
 
 				for (int j = 0; j < stagesRposition; j++)
@@ -271,7 +275,7 @@ void NonLinearAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffe
 				}
 			}
 		}
-		else {
+		else { //dual channel swapped channels
 			for (int i = 0; i < numSamples; ++i)
 			{
 
@@ -302,8 +306,8 @@ void NonLinearAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffe
 			}
 		}
 	}
-	else {
-		if (channelSwap == false) {
+	else {  //single channel
+		if (channelSwap == false) {  //single channel no swop
 			for (int i = 0; i < numSamples; ++i)
 			{
 
@@ -333,7 +337,7 @@ void NonLinearAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffe
 				}
 			}
 		}
-		else {
+		else { // single channel, swapped channels
 			for (int i = 0; i < numSamples; ++i)
 			{
 
@@ -360,11 +364,14 @@ void NonLinearAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffe
 					if (stagesR == true && j % 2 == 0) {
 						channelDataL[i] *= -1.0;
 					}
+
 				}
 			}
 		}
 	}
 }
+//-------------End of Distortion Code----------------------------------------------------------------------------------------------------------
+
 
 //==============================================================================
 bool NonLinearAudioProcessor::hasEditor() const
