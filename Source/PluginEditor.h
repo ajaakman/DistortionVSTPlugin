@@ -7,7 +7,7 @@
   the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
   and re-saved.
 
-  Created with Projucer version: 4.3.0
+  Created with Projucer version: 4.3.1
 
   ------------------------------------------------------------------------------
 
@@ -36,7 +36,9 @@
                                                                     //[/Comments]
 */
 class NonLinearAudioProcessorEditor  : public AudioProcessorEditor,
-                                       public Timer
+                                       public Timer,
+                                       public SliderListener,
+                                       public ButtonListener
 {
 public:
     //==============================================================================
@@ -50,6 +52,8 @@ public:
 
     void paint (Graphics& g) override;
     void resized() override;
+    void sliderValueChanged (Slider* sliderThatWasMoved) override;
+    void buttonClicked (Button* buttonThatWasClicked) override;
 
 
 
@@ -59,6 +63,18 @@ private:
     //[/UserVariables]
 
     //==============================================================================
+    ScopedPointer<Slider> sliderGainL;
+    ScopedPointer<ToggleButton> buttonStagesL;
+    ScopedPointer<Slider> sliderStagesL;
+    ScopedPointer<Slider> sliderArcTanPosL;
+    ScopedPointer<Slider> sliderArcTanNegL;
+    ScopedPointer<Slider> sliderGainR;
+    ScopedPointer<Slider> sliderStagesR;
+    ScopedPointer<Slider> sliderArcTanPosR;
+    ScopedPointer<Slider> sliderArcTanNegR;
+    ScopedPointer<ToggleButton> buttonStagesR;
+    ScopedPointer<ToggleButton> buttonChannelSwap;
+    ScopedPointer<ToggleButton> buttonSingleChannel;
 
 
     //==============================================================================
