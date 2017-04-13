@@ -143,7 +143,7 @@ void NonLinearAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffe
 	float *channelDataL = buffer.getWritePointer(0);
 	float *channelDataR = buffer.getWritePointer(1);
 
-	if (channelSwap = true) {
+	if (channelSwap == false) {
 		for (int i = 0; i < numSamples; ++i)
 		{
 
@@ -166,7 +166,7 @@ void NonLinearAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffe
 					channelDataR[i] = ((1.0 / atan(arcTanPosRposition)) * atan(arcTanPosRposition*channelDataR[i])*gainRposition);
 				else
 					channelDataR[i] = ((1.0 / atan(arcTanNegRposition)) * atan(arcTanNegRposition*channelDataR[i])*gainRposition);
-				if (stagesL == true && i % 2 == 0) {
+				if (stagesR == true && i % 2 == 0) {
 					channelDataR[i] *= -1.0;
 				}
 			}
@@ -195,7 +195,7 @@ void NonLinearAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffe
 					channelDataL[i] = ((1.0 / atan(arcTanPosRposition)) * atan(arcTanPosRposition*channelDataL[i])*gainRposition);
 				else
 					channelDataL[i] = ((1.0 / atan(arcTanNegRposition)) * atan(arcTanNegRposition*channelDataL[i])*gainRposition);
-				if (stagesL == true && i % 2 == 0) {
+				if (stagesR == true && i % 2 == 0) {
 					channelDataL[i] *= -1.0;
 				}
 			}
