@@ -132,17 +132,31 @@ void NonLinearAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffe
     // This is here to avoid people getting screaming feedback
     // when they first compile a plugin, but obviously you don't need to keep
     // this code if your algorithm always overwrites all the output channels.
-    for (int i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
-        buffer.clear (i, 0, buffer.getNumSamples());
+	for (int i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
+		buffer.clear(i, 0, buffer.getNumSamples());
 
-    // This is the place where you'd normally do the guts of your plugin's
-    // audio processing...
-    for (int channel = 0; channel < totalNumInputChannels; ++channel)
-    {
-        float* channelData = buffer.getWritePointer (channel);
+	// Retrieve the total number of samples in the buffer for this block     
+	int numSamples = buffer.getNumSamples();
 
-        // ..do something to the data...
-    }
+	// channelDataL and channelDataR are pointers to arrays of length numSamples which 
+	// contain the audio for one channel.  You repeat this for each channel     
+	float *channelDataL = buffer.getWritePointer(0);
+	float *channelDataR = buffer.getWritePointer(1);
+
+
+	for (int i = 0; i < numSamples; ++i)
+	{
+
+		for (int j = 0; j < stagesLposition; j++)
+		{
+			if (channelDataL[i] >= 0)
+				channelDataL[i] = ((1.0 / atan(arcTanPosLposition)) * atan(arcTanPosLposition*channelDataL[i])*gainLposition);
+			else
+				channelDataL[i] = ((1.0 / atan(arcTanNegLposition)) * atan(arcTanNegLposition*channelDataL[i])*gainLposition);
+
+			channelDataL[i] *= -1.0;
+		}
+	}
 }
 
 //==============================================================================
