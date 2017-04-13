@@ -55,6 +55,11 @@ public:
     void sliderValueChanged (Slider* sliderThatWasMoved) override;
     void buttonClicked (Button* buttonThatWasClicked) override;
 
+    // Binary resources:
+    static const char* aapcoursework_png;
+    static const int aapcoursework_pngSize;
+    static const char* aapcoursework_png2;
+    static const int aapcoursework_png2Size;
 
 
 private:
@@ -75,6 +80,7 @@ private:
     ScopedPointer<ToggleButton> buttonStagesR;
     ScopedPointer<ToggleButton> buttonChannelSwap;
     ScopedPointer<ToggleButton> buttonSingleChannel;
+    Image cachedImage_aapcoursework_png2_1;
 
 
     //==============================================================================
