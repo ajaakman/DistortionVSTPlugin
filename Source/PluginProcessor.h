@@ -56,6 +56,19 @@ public:
     void getStateInformation (MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
 
+	float gainLposition;
+	float stagesLposition;
+	float arcTanPosLposition;
+	float arcTanNegLposition;
+	bool stagesL;
+	float gainRposition;
+	float stagesRposition;
+	float arcTanPosRposition;
+	float arcTanNegRposition;
+	bool stagesR;
+	bool channelSwap;
+	bool singleChannel;
+
 private:
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (NonLinearAudioProcessor)

@@ -189,42 +189,50 @@ void NonLinearAudioProcessorEditor::sliderValueChanged (Slider* sliderThatWasMov
     if (sliderThatWasMoved == sliderGainL)
     {
         //[UserSliderCode_sliderGainL] -- add your slider handling code here..
-        //[/UserSliderCode_sliderGainL]
+		processor.gainLposition = sliderGainL->getValue();
+		//[/UserSliderCode_sliderGainL]
     }
     else if (sliderThatWasMoved == sliderStagesL)
     {
         //[UserSliderCode_sliderStagesL] -- add your slider handling code here..
-        //[/UserSliderCode_sliderStagesL]
+		processor.stagesLposition = sliderStagesL->getValue();
+		//[/UserSliderCode_sliderStagesL]
     }
     else if (sliderThatWasMoved == sliderArcTanPosL)
     {
         //[UserSliderCode_sliderArcTanPosL] -- add your slider handling code here..
-        //[/UserSliderCode_sliderArcTanPosL]
+		processor.arcTanPosLposition = sliderArcTanPosL->getValue();
+		//[/UserSliderCode_sliderArcTanPosL]
     }
     else if (sliderThatWasMoved == sliderArcTanNegL)
     {
         //[UserSliderCode_sliderArcTanNegL] -- add your slider handling code here..
-        //[/UserSliderCode_sliderArcTanNegL]
+		processor.arcTanNegLposition = sliderArcTanNegL->getValue();
+		//[/UserSliderCode_sliderArcTanNegL]
     }
     else if (sliderThatWasMoved == sliderGainR)
     {
         //[UserSliderCode_sliderGainR] -- add your slider handling code here..
-        //[/UserSliderCode_sliderGainR]
+		processor.gainRposition = sliderGainR->getValue();
+		//[/UserSliderCode_sliderGainR]
     }
     else if (sliderThatWasMoved == sliderStagesR)
     {
         //[UserSliderCode_sliderStagesR] -- add your slider handling code here..
-        //[/UserSliderCode_sliderStagesR]
+		processor.stagesRposition = sliderStagesR->getValue();
+		//[/UserSliderCode_sliderStagesR]
     }
     else if (sliderThatWasMoved == sliderArcTanPosR)
     {
         //[UserSliderCode_sliderArcTanPosR] -- add your slider handling code here..
-        //[/UserSliderCode_sliderArcTanPosR]
+		processor.arcTanPosRposition = sliderArcTanPosR->getValue();
+		//[/UserSliderCode_sliderArcTanPosR]
     }
     else if (sliderThatWasMoved == sliderArcTanNegR)
     {
         //[UserSliderCode_sliderArcTanNegR] -- add your slider handling code here..
-        //[/UserSliderCode_sliderArcTanNegR]
+		processor.arcTanNegRposition = sliderArcTanNegR->getValue();
+		//[/UserSliderCode_sliderArcTanNegR]
     }
 
     //[UsersliderValueChanged_Post]
@@ -239,22 +247,26 @@ void NonLinearAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked)
     if (buttonThatWasClicked == buttonStagesL)
     {
         //[UserButtonCode_buttonStagesL] -- add your button handler code here..
-        //[/UserButtonCode_buttonStagesL]
+		processor.stagesL = buttonStagesL->isDown();
+		//[/UserButtonCode_buttonStagesL]
     }
     else if (buttonThatWasClicked == buttonStagesR)
     {
         //[UserButtonCode_buttonStagesR] -- add your button handler code here..
-        //[/UserButtonCode_buttonStagesR]
+		processor.stagesR = buttonStagesR->isDown();
+		//[/UserButtonCode_buttonStagesR]
     }
     else if (buttonThatWasClicked == buttonChannelSwap)
     {
         //[UserButtonCode_buttonChannelSwap] -- add your button handler code here..
-        //[/UserButtonCode_buttonChannelSwap]
+		processor.channelSwap = buttonChannelSwap->isDown();
+		//[/UserButtonCode_buttonChannelSwap]
     }
     else if (buttonThatWasClicked == buttonSingleChannel)
     {
         //[UserButtonCode_buttonSingleChannel] -- add your button handler code here..
-        //[/UserButtonCode_buttonSingleChannel]
+		processor.singleChannel = buttonSingleChannel->isDown();
+		//[/UserButtonCode_buttonSingleChannel]
     }
 
     //[UserbuttonClicked_Post]
