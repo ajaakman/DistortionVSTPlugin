@@ -37,6 +37,103 @@ const String NonLinearAudioProcessor::getName() const
     return JucePlugin_Name;
 }
 
+int NonLinearAudioProcessor::getNumParameters()
+{
+	return kNumParameters;
+}
+
+float NonLinearAudioProcessor::getParameter(int index)
+{
+	switch (index)
+	{
+	case	kGainLposition:				return gainLposition;
+	case	kStagesLposition:			return stagesLposition;
+	case	kArcTanPosLposition:		return arcTanPosLposition;
+	case	kArcTanNegLposition:		return arcTanNegLposition;
+	case	kStagesL:					return stagesL;
+	case	kGainRposition:				return gainRposition;
+	case	kStagesRposition:			return stagesRposition;
+	case	kArcTanPosRposition:		return arcTanPosRposition;
+	case	kArcTanNegRposition:		return arcTanNegRposition;
+	case	kStagesR:					return stagesR;
+	case	kChannelSwap:				return channelSwap;
+	case	kSingleChannel:				return singleChannel;
+	default:							return 0.0f;
+	}
+}
+
+void NonLinearAudioProcessor::setParameter (int index, float newValue)
+{
+	switch (index)
+	{
+	case kGainLposition:
+		gainLposition = newValue;
+		break;
+	case kStagesLposition:
+		stagesLposition = newValue;
+		break;
+	case kArcTanPosLposition:
+		arcTanPosLposition = newValue;
+		break;
+	case kArcTanNegLposition:
+		arcTanNegLposition = newValue;
+		break;
+	//case kStagesL:
+	//	stagesL = newValue;
+	//	break;
+	case kGainRposition:
+		gainRposition = newValue;
+		break;
+	case kStagesRposition:
+		stagesRposition = newValue;
+		break;
+	case kArcTanPosRposition:
+		arcTanPosRposition = newValue;
+		break;
+	case kArcTanNegRposition:
+		arcTanNegRposition = newValue;
+		break;
+//	case kStagesR:
+	//	stagesR = newValue;
+	//	break;
+//	case kChannelSwap:
+	//	channelSwap = newValue;
+	//	break;
+	//case kSingleChannel:
+	//	singleChannel = newValue;
+	//	break;
+	default:
+		break;
+	}
+}
+
+const String NonLinearAudioProcessor::getParameterName(int index)
+{
+	switch (index)
+	{
+	case	kGainLposition:				return "gain L";
+	case	kStagesLposition:			return "stages L position";
+	case	kArcTanPosLposition:		return "arctan pos L";
+	case	kArcTanNegLposition:		return "arctan neg L";
+	case	kStagesL:					return "stages L";
+	case	kGainRposition:				return "gain R";
+	case	kStagesRposition:			return "stages R position";
+	case	kArcTanPosRposition:		return "arctan pos R";
+	case	kArcTanNegRposition:		return "arctan neg R";
+	case	kStagesR:					return "stages R";
+	case	kChannelSwap:				return "channel swap";
+	case	kSingleChannel:				return "single channel";
+	default:							break;
+	}
+	return String::empty;
+}
+
+const String NonLinearAudioProcessor::getParameterText(int index)
+{
+	return String (getParameter(index), 2);
+}
+
+
 bool NonLinearAudioProcessor::acceptsMidi() const
 {
    #if JucePlugin_WantsMidiInput

@@ -56,6 +56,23 @@ public:
     void getStateInformation (MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
 
+	enum Parameters
+	{	
+	kGainLposition = 0,
+	kStagesLposition, 
+	kArcTanPosLposition, 
+	kArcTanNegLposition ,
+	kStagesL, 
+	kGainRposition,
+	kStagesRposition,
+	kArcTanPosRposition, 
+	kArcTanNegRposition ,
+	kStagesR, 
+	kChannelSwap, 
+	kSingleChannel, 
+	kNumParameters
+	};
+
 	float gainLposition = 1;
 	float stagesLposition = 1;
 	float arcTanPosLposition = 0.1;
@@ -69,6 +86,11 @@ public:
 	bool channelSwap = false;
 	bool singleChannel = false;
 
+	int	getNumParameters();
+	float getParameter(int index);
+	void setParameter(int index, float newValue);
+	const String getParameterName(int index);
+	const String getParameterText(int index);
 
 private:
     //==============================================================================

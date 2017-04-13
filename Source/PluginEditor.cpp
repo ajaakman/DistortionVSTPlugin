@@ -30,11 +30,7 @@
 NonLinearAudioProcessorEditor::NonLinearAudioProcessorEditor (NonLinearAudioProcessor& p)
     : AudioProcessorEditor(p), processor(p)
 {
-    //[Constructor_pre] You can add your own custom stuff here..
-	//sliderGainL->setValue(1); // Setting inital values for sliders.
-	//sliderGainR->setValue(1); // When recompiling the interface, this section moves to the top of the function, which brakes it. Appears to be a JUCE bug.
-    //[/Constructor_pre]
-
+    
     addAndMakeVisible (sliderGainL = new Slider ("new slider"));
     sliderGainL->setRange (0, 1, 0);
     sliderGainL->setSliderStyle (Slider::RotaryVerticalDrag);
@@ -141,6 +137,11 @@ NonLinearAudioProcessorEditor::NonLinearAudioProcessorEditor (NonLinearAudioProc
     buttonSingleChannel->addListener (this);
 
     cachedImage_aapcoursework_png2_1 = ImageCache::getFromMemory (aapcoursework_png2, aapcoursework_png2Size);
+
+	//[Constructor_pre] You can add your own custom stuff here..
+	sliderGainL->setValue(1); // Setting inital values for sliders.
+	sliderGainR->setValue(1); // When recompiling the interface, this section moves to the top of the function, which brakes it. Appears to be a JUCE bug.
+	//[/Constructor_pre]
 
     //[UserPreSize]
     //[/UserPreSize]
@@ -260,54 +261,63 @@ void NonLinearAudioProcessorEditor::resized()
 void NonLinearAudioProcessorEditor::sliderValueChanged (Slider* sliderThatWasMoved)
 {
     //[UsersliderValueChanged_Pre]
-    //[/UsersliderValueChanged_Pre]
+	
+	//[/UsersliderValueChanged_Pre]
 
     if (sliderThatWasMoved == sliderGainL)
     {
         //[UserSliderCode_sliderGainL] -- add your slider handling code here..
-		processor.gainLposition = sliderGainL->getValue();
+		processor.setParameterNotifyingHost(NonLinearAudioProcessor::kGainLposition,
+			(float)sliderGainL->getValue());
         //[/UserSliderCode_sliderGainL]
     }
     else if (sliderThatWasMoved == sliderStagesL)
     {
         //[UserSliderCode_sliderStagesL] -- add your slider handling code here..
-		processor.stagesLposition = sliderStagesL->getValue();
+		processor.setParameterNotifyingHost(NonLinearAudioProcessor::kStagesLposition,
+			(float)sliderStagesL->getValue());
         //[/UserSliderCode_sliderStagesL]
     }
     else if (sliderThatWasMoved == sliderArcTanPosL)
     {
         //[UserSliderCode_sliderArcTanPosL] -- add your slider handling code here..
-		processor.arcTanPosLposition = sliderArcTanPosL->getValue();
+		processor.setParameterNotifyingHost(NonLinearAudioProcessor::kArcTanPosLposition,
+			(float)sliderArcTanPosL->getValue());
         //[/UserSliderCode_sliderArcTanPosL]
     }
     else if (sliderThatWasMoved == sliderArcTanNegL)
     {
         //[UserSliderCode_sliderArcTanNegL] -- add your slider handling code here..
-		processor.arcTanNegLposition = sliderArcTanNegL->getValue();
+		processor.setParameterNotifyingHost(NonLinearAudioProcessor::kArcTanNegLposition,
+			(float)sliderArcTanNegL->getValue());
         //[/UserSliderCode_sliderArcTanNegL]
     }
     else if (sliderThatWasMoved == sliderGainR)
     {
         //[UserSliderCode_sliderGainR] -- add your slider handling code here..
-		processor.gainRposition = sliderGainR->getValue();
+		processor.setParameterNotifyingHost(NonLinearAudioProcessor::kGainRposition,
+			(float)sliderGainR->getValue());
         //[/UserSliderCode_sliderGainR]
     }
     else if (sliderThatWasMoved == sliderStagesR)
     {
         //[UserSliderCode_sliderStagesR] -- add your slider handling code here..
-		processor.stagesRposition = sliderStagesR->getValue();
+		processor.setParameterNotifyingHost(NonLinearAudioProcessor::kStagesRposition,
+			(float)sliderStagesR->getValue());
         //[/UserSliderCode_sliderStagesR]
     }
     else if (sliderThatWasMoved == sliderArcTanPosR)
     {
         //[UserSliderCode_sliderArcTanPosR] -- add your slider handling code here..
-		processor.arcTanPosRposition = sliderArcTanPosR->getValue();
+		processor.setParameterNotifyingHost(NonLinearAudioProcessor::kArcTanPosRposition,
+			(float)sliderArcTanPosR->getValue());
         //[/UserSliderCode_sliderArcTanPosR]
     }
     else if (sliderThatWasMoved == sliderArcTanNegR)
     {
         //[UserSliderCode_sliderArcTanNegR] -- add your slider handling code here..
-		processor.arcTanNegRposition = sliderArcTanNegR->getValue();
+		processor.setParameterNotifyingHost(NonLinearAudioProcessor::kArcTanNegRposition,
+			(float)sliderArcTanNegR->getValue());
         //[/UserSliderCode_sliderArcTanNegR]
     }
 
@@ -354,7 +364,20 @@ void NonLinearAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked)
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
 void NonLinearAudioProcessorEditor::timerCallback()
 {
-    //exchange any data you want between UI elements and the Plugin "ourProcessor"
+	sliderGainL->setValue(processor.gainLposition, dontSendNotification);
+	sliderStagesL->setValue(processor.stagesLposition, dontSendNotification);
+	sliderArcTanPosL->setValue(processor.arcTanPosLposition, dontSendNotification);
+	sliderArcTanNegL->setValue(processor.arcTanNegLposition, dontSendNotification);
+	sliderGainR->setValue(processor.gainRposition, dontSendNotification);
+	sliderStagesR->setValue(processor.stagesRposition, dontSendNotification);
+	sliderArcTanPosR->setValue(processor.arcTanPosRposition, dontSendNotification);
+	sliderArcTanNegR->setValue(processor.arcTanNegRposition, dontSendNotification);
+	//buttonStagesL->setValue(processor.stagesL, dontSendNotification);
+	//buttonStagesR->setValue(processor.stagesR, dontSendNotification);
+	//buttonChannelSwap->setValue(processor.channelSwap, dontSendNotification);
+	//buttonSingleChannel->setValue(processor.singleChannel, dontSendNotification);
+	
+	//exchange any data you want between UI elements and the Plugin "ourProcessor"
 }
 
 //[/MiscUserCode]
