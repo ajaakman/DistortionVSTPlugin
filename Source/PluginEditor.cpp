@@ -30,7 +30,11 @@
 NonLinearAudioProcessorEditor::NonLinearAudioProcessorEditor (NonLinearAudioProcessor& p)
     : AudioProcessorEditor(p), processor(p)
 {
-   
+    //[Constructor_pre] You can add your own custom stuff here..
+	//sliderGainL->setValue(1); // Setting inital values for sliders.
+	//sliderGainR->setValue(1); // When recompiling the interface, this section moves to the top of the function, which brakes it. Appears to be a JUCE bug.
+    //[/Constructor_pre]
+
     addAndMakeVisible (sliderGainL = new Slider ("new slider"));
     sliderGainL->setRange (0, 1, 0);
     sliderGainL->setSliderStyle (Slider::RotaryVerticalDrag);
@@ -44,7 +48,7 @@ NonLinearAudioProcessorEditor::NonLinearAudioProcessorEditor (NonLinearAudioProc
     buttonStagesL->addListener (this);
 
     addAndMakeVisible (sliderStagesL = new Slider ("new slider"));
-    sliderStagesL->setRange (1, 5, 0);
+    sliderStagesL->setRange (1, 5, 1);
     sliderStagesL->setSliderStyle (Slider::RotaryVerticalDrag);
     sliderStagesL->setTextBoxStyle (Slider::TextBoxBelow, false, 30, 20);
     sliderStagesL->setColour (Slider::rotarySliderFillColourId, Colour (0x7f000000));
@@ -76,7 +80,7 @@ NonLinearAudioProcessorEditor::NonLinearAudioProcessorEditor (NonLinearAudioProc
     sliderGainR->addListener (this);
 
     addAndMakeVisible (sliderStagesR = new Slider ("new slider"));
-    sliderStagesR->setRange (1, 5, 0);
+    sliderStagesR->setRange (1, 5, 1);
     sliderStagesR->setSliderStyle (Slider::RotaryVerticalDrag);
     sliderStagesR->setTextBoxStyle (Slider::TextBoxBelow, false, 30, 20);
     sliderStagesR->setColour (Slider::rotarySliderFillColourId, Colour (0x7f000000));
@@ -111,15 +115,11 @@ NonLinearAudioProcessorEditor::NonLinearAudioProcessorEditor (NonLinearAudioProc
     buttonSingleChannel->setButtonText (String());
     buttonSingleChannel->addListener (this);
 
-	//[Constructor_pre] You can add your own custom stuff here..
-	sliderGainL->setValue(1);
-	sliderGainR->setValue(1);
-	//[/Constructor_pre]
 
     //[UserPreSize]
     //[/UserPreSize]
 
-    setSize (480, 240);
+    setSize (580, 290);
 
 
     //[Constructor] You can add your own custom stuff here..
@@ -158,6 +158,48 @@ void NonLinearAudioProcessorEditor::paint (Graphics& g)
 
     g.fillAll (Colours::white);
 
+    g.setColour (Colours::black);
+    g.setFont (Font ("OCR A Std", 17.00f, Font::bold));
+    g.drawText (TRANS("Gain   Stage   POS  Invert  NEG"),
+                100, 140, 388, 30,
+                Justification::centred, true);
+
+    g.setColour (Colours::black);
+    g.setFont (Font ("OCR A Std", 13.00f, Font::plain));
+    g.drawText (TRANS("Single"),
+                12, 156, 68, 30,
+                Justification::centred, true);
+
+    g.setColour (Colours::black);
+    g.setFont (Font ("OCR A Std", 13.00f, Font::plain));
+    g.drawText (TRANS("Channel"),
+                12, 172, 68, 30,
+                Justification::centred, true);
+
+    g.setColour (Colours::black);
+    g.setFont (Font ("OCR A Std", 13.00f, Font::plain));
+    g.drawText (TRANS("Swap"),
+                500, 156, 68, 30,
+                Justification::centred, true);
+
+    g.setColour (Colours::black);
+    g.setFont (Font ("OCR A Std", 11.50f, Font::plain));
+    g.drawText (TRANS("Channels"),
+                500, 172, 68, 30,
+                Justification::centred, true);
+
+    g.setColour (Colours::black);
+    g.setFont (Font ("OCR A Std", 29.50f, Font::bold));
+    g.drawText (TRANS("WaveShaper"),
+                96, 252, 388, 30,
+                Justification::centred, true);
+
+    g.setColour (Colours::black);
+    g.setFont (Font ("OCR A Std", 50.60f, Font::bold));
+    g.drawText (TRANS("ARCTAN(x)"),
+                72, 4, 452, 68,
+                Justification::centred, true);
+
     //[UserPaint] Add your own custom painting code here..
     //[/UserPaint]
 }
@@ -167,18 +209,18 @@ void NonLinearAudioProcessorEditor::resized()
     //[UserPreResize] Add your own custom resize code here..
     //[/UserPreResize]
 
-    sliderGainL->setBounds (48, 24, 80, 80);
-    buttonStagesL->setBounds (312, 48, 24, 24);
-    sliderStagesL->setBounds (136, 24, 80, 80);
-    sliderArcTanPosL->setBounds (224, 24, 80, 80);
-    sliderArcTanNegL->setBounds (344, 24, 80, 80);
-    sliderGainR->setBounds (48, 133, 80, 80);
-    sliderStagesR->setBounds (136, 133, 80, 80);
-    sliderArcTanPosR->setBounds (224, 133, 80, 80);
-    sliderArcTanNegR->setBounds (344, 133, 80, 80);
-    buttonStagesR->setBounds (312, 168, 24, 24);
-    buttonChannelSwap->setBounds (440, 104, 24, 24);
-    buttonSingleChannel->setBounds (16, 104, 24, 24);
+    sliderGainL->setBounds (88, 57, 80, 80);
+    buttonStagesL->setBounds (372, 94, 24, 24);
+    sliderStagesL->setBounds (179, 57, 80, 80);
+    sliderArcTanPosL->setBounds (266, 57, 80, 80);
+    sliderArcTanNegL->setBounds (424, 57, 80, 80);
+    sliderGainR->setBounds (88, 167, 80, 80);
+    sliderStagesR->setBounds (179, 167, 80, 80);
+    sliderArcTanPosR->setBounds (266, 167, 80, 80);
+    sliderArcTanNegR->setBounds (424, 167, 80, 80);
+    buttonStagesR->setBounds (372, 191, 24, 24);
+    buttonChannelSwap->setBounds (522, 136, 24, 24);
+    buttonSingleChannel->setBounds (32, 136, 24, 24);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -299,63 +341,79 @@ BEGIN_JUCER_METADATA
                  componentName="" parentClasses="public AudioProcessorEditor, public Timer"
                  constructorParams="NonLinearAudioProcessor&amp; p" variableInitialisers="AudioProcessorEditor(p), processor(p)&#10;"
                  snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330"
-                 fixedSize="0" initialWidth="480" initialHeight="240">
-  <BACKGROUND backgroundColour="ffffffff"/>
+                 fixedSize="0" initialWidth="580" initialHeight="290">
+  <BACKGROUND backgroundColour="ffffffff">
+    <TEXT pos="100 140 388 30" fill="solid: ff000000" hasStroke="0" text="Gain   Stage   POS  Invert  NEG"
+          fontname="OCR A Std" fontsize="17" bold="1" italic="0" justification="36"/>
+    <TEXT pos="12 156 68 30" fill="solid: ff000000" hasStroke="0" text="Single"
+          fontname="OCR A Std" fontsize="13" bold="0" italic="0" justification="36"/>
+    <TEXT pos="12 172 68 30" fill="solid: ff000000" hasStroke="0" text="Channel"
+          fontname="OCR A Std" fontsize="13" bold="0" italic="0" justification="36"/>
+    <TEXT pos="500 156 68 30" fill="solid: ff000000" hasStroke="0" text="Swap"
+          fontname="OCR A Std" fontsize="13" bold="0" italic="0" justification="36"/>
+    <TEXT pos="500 172 68 30" fill="solid: ff000000" hasStroke="0" text="Channels"
+          fontname="OCR A Std" fontsize="11.5" bold="0" italic="0" justification="36"/>
+    <TEXT pos="96 252 388 30" fill="solid: ff000000" hasStroke="0" text="WaveShaper"
+          fontname="OCR A Std" fontsize="29.5" bold="1" italic="0" justification="36"/>
+    <TEXT pos="72 4 452 68" fill="solid: ff000000" hasStroke="0" text="ARCTAN(x)"
+          fontname="OCR A Std" fontsize="50.600000000000001421" bold="1"
+          italic="0" justification="36"/>
+  </BACKGROUND>
   <SLIDER name="new slider" id="4f7f4ba51139aeec" memberName="sliderGainL"
-          virtualName="" explicitFocusOrder="0" pos="48 24 80 80" rotarysliderfill="7f000000"
+          virtualName="" explicitFocusOrder="0" pos="88 57 80 80" rotarysliderfill="7f000000"
           textboxbkgd="ffffffff" min="0" max="1" int="0" style="RotaryVerticalDrag"
           textBoxPos="TextBoxBelow" textBoxEditable="1" textBoxWidth="30"
           textBoxHeight="20" skewFactor="1" needsCallback="1"/>
   <TOGGLEBUTTON name="new toggle button" id="d0999ef3f0c8fbee" memberName="buttonStagesL"
-                virtualName="" explicitFocusOrder="0" pos="312 48 24 24" buttonText=""
+                virtualName="" explicitFocusOrder="0" pos="372 94 24 24" buttonText=""
                 connectedEdges="0" needsCallback="1" radioGroupId="0" state="0"/>
   <SLIDER name="new slider" id="ed64f2b27d92f208" memberName="sliderStagesL"
-          virtualName="" explicitFocusOrder="0" pos="136 24 80 80" rotarysliderfill="7f000000"
-          textboxbkgd="ffffffff" min="1" max="5" int="0" style="RotaryVerticalDrag"
+          virtualName="" explicitFocusOrder="0" pos="179 57 80 80" rotarysliderfill="7f000000"
+          textboxbkgd="ffffffff" min="1" max="5" int="1" style="RotaryVerticalDrag"
           textBoxPos="TextBoxBelow" textBoxEditable="1" textBoxWidth="30"
           textBoxHeight="20" skewFactor="1" needsCallback="1"/>
   <SLIDER name="new slider" id="d8dc63b8a462c25d" memberName="sliderArcTanPosL"
-          virtualName="" explicitFocusOrder="0" pos="224 24 80 80" rotarysliderfill="7f000000"
+          virtualName="" explicitFocusOrder="0" pos="266 57 80 80" rotarysliderfill="7f000000"
           textboxbkgd="ffffffff" min="0.10000000000000000555" max="10"
           int="0" style="RotaryVerticalDrag" textBoxPos="TextBoxBelow"
           textBoxEditable="1" textBoxWidth="30" textBoxHeight="20" skewFactor="1"
           needsCallback="1"/>
   <SLIDER name="new slider" id="dc9e905b77deffd9" memberName="sliderArcTanNegL"
-          virtualName="" explicitFocusOrder="0" pos="344 24 80 80" rotarysliderfill="7f000000"
+          virtualName="" explicitFocusOrder="0" pos="424 57 80 80" rotarysliderfill="7f000000"
           textboxbkgd="ffffffff" min="0.10000000000000000555" max="10"
           int="0" style="RotaryVerticalDrag" textBoxPos="TextBoxBelow"
           textBoxEditable="1" textBoxWidth="30" textBoxHeight="20" skewFactor="1"
           needsCallback="1"/>
   <SLIDER name="new slider" id="e5359d0300d91cc6" memberName="sliderGainR"
-          virtualName="" explicitFocusOrder="0" pos="48 133 80 80" rotarysliderfill="7f000000"
+          virtualName="" explicitFocusOrder="0" pos="88 167 80 80" rotarysliderfill="7f000000"
           textboxbkgd="ffffffff" min="0" max="1" int="0" style="RotaryVerticalDrag"
           textBoxPos="TextBoxBelow" textBoxEditable="1" textBoxWidth="30"
           textBoxHeight="20" skewFactor="1" needsCallback="1"/>
   <SLIDER name="new slider" id="2e5b1da571e3ee60" memberName="sliderStagesR"
-          virtualName="" explicitFocusOrder="0" pos="136 133 80 80" rotarysliderfill="7f000000"
-          textboxbkgd="ffffffff" min="1" max="5" int="0" style="RotaryVerticalDrag"
+          virtualName="" explicitFocusOrder="0" pos="179 167 80 80" rotarysliderfill="7f000000"
+          textboxbkgd="ffffffff" min="1" max="5" int="1" style="RotaryVerticalDrag"
           textBoxPos="TextBoxBelow" textBoxEditable="1" textBoxWidth="30"
           textBoxHeight="20" skewFactor="1" needsCallback="1"/>
   <SLIDER name="new slider" id="ea800404147548f0" memberName="sliderArcTanPosR"
-          virtualName="" explicitFocusOrder="0" pos="224 133 80 80" rotarysliderfill="7f000000"
+          virtualName="" explicitFocusOrder="0" pos="266 167 80 80" rotarysliderfill="7f000000"
           textboxbkgd="ffffffff" min="0.10000000000000000555" max="10"
           int="0" style="RotaryVerticalDrag" textBoxPos="TextBoxBelow"
           textBoxEditable="1" textBoxWidth="30" textBoxHeight="20" skewFactor="1"
           needsCallback="1"/>
   <SLIDER name="new slider" id="603b589a806fa809" memberName="sliderArcTanNegR"
-          virtualName="" explicitFocusOrder="0" pos="344 133 80 80" rotarysliderfill="7f000000"
+          virtualName="" explicitFocusOrder="0" pos="424 167 80 80" rotarysliderfill="7f000000"
           textboxbkgd="ffffffff" min="0.10000000000000000555" max="10"
           int="0" style="RotaryVerticalDrag" textBoxPos="TextBoxBelow"
           textBoxEditable="1" textBoxWidth="30" textBoxHeight="20" skewFactor="1"
           needsCallback="1"/>
   <TOGGLEBUTTON name="new toggle button" id="bb98061b73e6a7bf" memberName="buttonStagesR"
-                virtualName="" explicitFocusOrder="0" pos="312 168 24 24" buttonText=""
+                virtualName="" explicitFocusOrder="0" pos="372 191 24 24" buttonText=""
                 connectedEdges="0" needsCallback="1" radioGroupId="0" state="0"/>
   <TOGGLEBUTTON name="new toggle button" id="5b3ba7af13b60a1e" memberName="buttonChannelSwap"
-                virtualName="" explicitFocusOrder="0" pos="440 104 24 24" buttonText=""
+                virtualName="" explicitFocusOrder="0" pos="522 136 24 24" buttonText=""
                 connectedEdges="0" needsCallback="1" radioGroupId="0" state="0"/>
   <TOGGLEBUTTON name="new toggle button" id="e00e7cd8e5280105" memberName="buttonSingleChannel"
-                virtualName="" explicitFocusOrder="0" pos="16 104 24 24" buttonText=""
+                virtualName="" explicitFocusOrder="0" pos="32 136 24 24" buttonText=""
                 connectedEdges="0" needsCallback="1" radioGroupId="0" state="0"/>
 </JUCER_COMPONENT>
 
