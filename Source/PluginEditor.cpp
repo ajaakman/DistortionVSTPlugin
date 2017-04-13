@@ -30,11 +30,7 @@
 NonLinearAudioProcessorEditor::NonLinearAudioProcessorEditor (NonLinearAudioProcessor& p)
     : AudioProcessorEditor(p), processor(p)
 {
-    //[Constructor_pre] You can add your own custom stuff here..
-	sliderGainL->setValue(1);
-	sliderGainR->setValue(1);
-    //[/Constructor_pre]
-
+   
     addAndMakeVisible (sliderGainL = new Slider ("new slider"));
     sliderGainL->setRange (0, 1, 0);
     sliderGainL->setSliderStyle (Slider::RotaryVerticalDrag);
@@ -115,6 +111,10 @@ NonLinearAudioProcessorEditor::NonLinearAudioProcessorEditor (NonLinearAudioProc
     buttonSingleChannel->setButtonText (String());
     buttonSingleChannel->addListener (this);
 
+	//[Constructor_pre] You can add your own custom stuff here..
+	sliderGainL->setValue(1);
+	sliderGainR->setValue(1);
+	//[/Constructor_pre]
 
     //[UserPreSize]
     //[/UserPreSize]

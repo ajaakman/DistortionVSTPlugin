@@ -56,20 +56,19 @@ public:
     void getStateInformation (MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
 
-	float gainLposition;
-	float stagesLposition;
-	float arcTanPosLposition;
-	float arcTanNegLposition;
-	bool stagesL;
-	float gainRposition;
-	float stagesRposition;
-	float arcTanPosRposition;
-	float arcTanNegRposition;
-	bool stagesR;
-	bool channelSwap;
-	bool singleChannel;
+	float gainLposition = 1;
+	float stagesLposition = 1;
+	float arcTanPosLposition = 0.1;
+	float arcTanNegLposition = 0.1;
+	bool stagesL = false;
+	float gainRposition = 1;
+	float stagesRposition = 1;
+	float arcTanPosRposition = 0.1;
+	float arcTanNegRposition = 0.1;
+	bool stagesR = false;
+	bool channelSwap = false;
+	bool singleChannel = false;
 
-	
 
 private:
     //==============================================================================

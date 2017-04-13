@@ -144,7 +144,7 @@ void NonLinearAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffe
 	float *channelDataR = buffer.getWritePointer(1);
 
 	if (singleChannel == false) {
-		if (channelSwap == true) {
+		if (channelSwap == false) {
 			for (int i = 0; i < numSamples; ++i)
 			{
 
@@ -204,7 +204,7 @@ void NonLinearAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffe
 		}
 	}
 	else {
-		if (channelSwap == true) {
+		if (channelSwap == false) {
 			for (int i = 0; i < numSamples; ++i)
 			{
 
