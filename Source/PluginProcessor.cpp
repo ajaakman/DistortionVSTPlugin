@@ -143,60 +143,122 @@ void NonLinearAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffe
 	float *channelDataL = buffer.getWritePointer(0);
 	float *channelDataR = buffer.getWritePointer(1);
 
-	if (channelSwap == true) {
-		for (int i = 0; i < numSamples; ++i)
-		{
-
-			for (int j = 0; j < stagesLposition; j++)
+	if (singleChannel == false) {
+		if (channelSwap == true) {
+			for (int i = 0; i < numSamples; ++i)
 			{
-				if (channelDataL[i] >= 0)
-					channelDataL[i] = ((1.0 / atan(arcTanPosLposition)) * atan(arcTanPosLposition*channelDataL[i])*gainLposition);
-				else
-					channelDataL[i] = ((1.0 / atan(arcTanNegLposition)) * atan(arcTanNegLposition*channelDataL[i])*gainLposition);
-				if (stagesL == true && j % 2 == 0)
-					channelDataL[i] *= -1.0;
+
+				for (int j = 0; j < stagesLposition; j++)
+				{
+					if (channelDataL[i] >= 0)
+						channelDataL[i] = ((1.0 / atan(arcTanPosLposition)) * atan(arcTanPosLposition*channelDataL[i])*gainLposition);
+					else
+						channelDataL[i] = ((1.0 / atan(arcTanNegLposition)) * atan(arcTanNegLposition*channelDataL[i])*gainLposition);
+					if (stagesL == true && j % 2 == 0)
+						channelDataL[i] *= -1.0;
+				}
+			}
+			for (int i = 0; i < numSamples; ++i)
+			{
+
+				for (int j = 0; j < stagesRposition; j++)
+				{
+					if (channelDataR[i] >= 0)
+						channelDataR[i] = ((1.0 / atan(arcTanPosRposition)) * atan(arcTanPosRposition*channelDataR[i])*gainRposition);
+					else
+						channelDataR[i] = ((1.0 / atan(arcTanNegRposition)) * atan(arcTanNegRposition*channelDataR[i])*gainRposition);
+					if (stagesR == true && j % 2 == 0) {
+						channelDataR[i] *= -1.0;
+					}
+				}
 			}
 		}
-		for (int i = 0; i < numSamples; ++i)
-		{
-
-			for (int j = 0; j < stagesRposition; j++)
+		else {
+			for (int i = 0; i < numSamples; ++i)
 			{
-				if (channelDataR[i] >= 0)
-					channelDataR[i] = ((1.0 / atan(arcTanPosRposition)) * atan(arcTanPosRposition*channelDataR[i])*gainRposition);
-				else
-					channelDataR[i] = ((1.0 / atan(arcTanNegRposition)) * atan(arcTanNegRposition*channelDataR[i])*gainRposition);
-				if (stagesR == true && j % 2 == 0) {
-					channelDataR[i] *= -1.0;
+
+				for (int j = 0; j < stagesLposition; j++)
+				{
+					if (channelDataR[i] >= 0)
+						channelDataR[i] = ((1.0 / atan(arcTanPosLposition)) * atan(arcTanPosLposition*channelDataR[i])*gainLposition);
+					else
+						channelDataR[i] = ((1.0 / atan(arcTanNegLposition)) * atan(arcTanNegLposition*channelDataR[i])*gainLposition);
+					if (stagesL == true && j % 2 == 0)
+						channelDataR[i] *= -1.0;
+				}
+			}
+			for (int i = 0; i < numSamples; ++i)
+			{
+
+				for (int j = 0; j < stagesRposition; j++)
+				{
+					if (channelDataL[i] >= 0)
+						channelDataL[i] = ((1.0 / atan(arcTanPosRposition)) * atan(arcTanPosRposition*channelDataL[i])*gainRposition);
+					else
+						channelDataL[i] = ((1.0 / atan(arcTanNegRposition)) * atan(arcTanNegRposition*channelDataL[i])*gainRposition);
+					if (stagesR == true && j % 2 == 0) {
+						channelDataL[i] *= -1.0;
+					}
 				}
 			}
 		}
 	}
 	else {
-		for (int i = 0; i < numSamples; ++i)
-		{
-
-			for (int j = 0; j < stagesLposition; j++)
+		if (channelSwap == true) {
+			for (int i = 0; i < numSamples; ++i)
 			{
-				if (channelDataR[i] >= 0)
-					channelDataR[i] = ((1.0 / atan(arcTanPosLposition)) * atan(arcTanPosLposition*channelDataR[i])*gainLposition);
-				else
-					channelDataR[i] = ((1.0 / atan(arcTanNegLposition)) * atan(arcTanNegLposition*channelDataR[i])*gainLposition);
-				if (stagesL == true && j % 2 == 0)
-					channelDataR[i] *= -1.0;
+
+				for (int j = 0; j < stagesLposition; j++)
+				{
+					if (channelDataL[i] >= 0)
+						channelDataL[i] = ((1.0 / atan(arcTanPosLposition)) * atan(arcTanPosLposition*channelDataL[i])*gainLposition);
+					else
+						channelDataL[i] = ((1.0 / atan(arcTanNegLposition)) * atan(arcTanNegLposition*channelDataL[i])*gainLposition);
+					if (stagesL == true && j % 2 == 0)
+						channelDataL[i] *= -1.0;
+				}
+			}
+			for (int i = 0; i < numSamples; ++i)
+			{
+
+				for (int j = 0; j < stagesLposition; j++)
+				{
+					if (channelDataR[i] >= 0)
+						channelDataR[i] = ((1.0 / atan(arcTanPosLposition)) * atan(arcTanPosLposition*channelDataR[i])*gainLposition);
+					else
+						channelDataR[i] = ((1.0 / atan(arcTanNegLposition)) * atan(arcTanNegLposition*channelDataR[i])*gainLposition);
+					if (stagesL == true && j % 2 == 0) {
+						channelDataR[i] *= -1.0;
+					}
+				}
 			}
 		}
-		for (int i = 0; i < numSamples; ++i)
-		{
-
-			for (int j = 0; j < stagesRposition; j++)
+		else {
+			for (int i = 0; i < numSamples; ++i)
 			{
-				if (channelDataL[i] >= 0)
-					channelDataL[i] = ((1.0 / atan(arcTanPosRposition)) * atan(arcTanPosRposition*channelDataL[i])*gainRposition);
-				else
-					channelDataL[i] = ((1.0 / atan(arcTanNegRposition)) * atan(arcTanNegRposition*channelDataL[i])*gainRposition);
-				if (stagesR == true && j % 2 == 0) {
-					channelDataL[i] *= -1.0;
+
+				for (int j = 0; j < stagesRposition; j++)
+				{
+					if (channelDataR[i] >= 0)
+						channelDataR[i] = ((1.0 / atan(arcTanPosRposition)) * atan(arcTanPosRposition*channelDataR[i])*gainRposition);
+					else
+						channelDataR[i] = ((1.0 / atan(arcTanNegRposition)) * atan(arcTanNegRposition*channelDataR[i])*gainRposition);
+					if (stagesR == true && j % 2 == 0)
+						channelDataR[i] *= -1.0;
+				}
+			}
+			for (int i = 0; i < numSamples; ++i)
+			{
+
+				for (int j = 0; j < stagesRposition; j++)
+				{
+					if (channelDataL[i] >= 0)
+						channelDataL[i] = ((1.0 / atan(arcTanPosRposition)) * atan(arcTanPosRposition*channelDataL[i])*gainRposition);
+					else
+						channelDataL[i] = ((1.0 / atan(arcTanNegRposition)) * atan(arcTanNegRposition*channelDataL[i])*gainRposition);
+					if (stagesR == true && j % 2 == 0) {
+						channelDataL[i] *= -1.0;
+					}
 				}
 			}
 		}

@@ -31,12 +31,14 @@ NonLinearAudioProcessorEditor::NonLinearAudioProcessorEditor (NonLinearAudioProc
     : AudioProcessorEditor(p), processor(p)
 {
     //[Constructor_pre] You can add your own custom stuff here..
+	sliderGainL->setValue(1);
+	sliderGainR->setValue(1);
     //[/Constructor_pre]
 
     addAndMakeVisible (sliderGainL = new Slider ("new slider"));
     sliderGainL->setRange (0, 1, 0);
-    sliderGainL->setSliderStyle (Slider::Rotary);
-    sliderGainL->setTextBoxStyle (Slider::TextBoxBelow, false, 80, 20);
+    sliderGainL->setSliderStyle (Slider::RotaryVerticalDrag);
+    sliderGainL->setTextBoxStyle (Slider::TextBoxBelow, false, 30, 20);
     sliderGainL->setColour (Slider::rotarySliderFillColourId, Colour (0x7f000000));
     sliderGainL->setColour (Slider::textBoxBackgroundColourId, Colours::white);
     sliderGainL->addListener (this);
@@ -46,57 +48,57 @@ NonLinearAudioProcessorEditor::NonLinearAudioProcessorEditor (NonLinearAudioProc
     buttonStagesL->addListener (this);
 
     addAndMakeVisible (sliderStagesL = new Slider ("new slider"));
-    sliderStagesL->setRange (1, 10, 0);
-    sliderStagesL->setSliderStyle (Slider::Rotary);
-    sliderStagesL->setTextBoxStyle (Slider::TextBoxBelow, false, 80, 20);
+    sliderStagesL->setRange (1, 5, 0);
+    sliderStagesL->setSliderStyle (Slider::RotaryVerticalDrag);
+    sliderStagesL->setTextBoxStyle (Slider::TextBoxBelow, false, 30, 20);
     sliderStagesL->setColour (Slider::rotarySliderFillColourId, Colour (0x7f000000));
     sliderStagesL->setColour (Slider::textBoxBackgroundColourId, Colours::white);
     sliderStagesL->addListener (this);
 
     addAndMakeVisible (sliderArcTanPosL = new Slider ("new slider"));
-    sliderArcTanPosL->setRange (0.1, 20, 0);
-    sliderArcTanPosL->setSliderStyle (Slider::Rotary);
-    sliderArcTanPosL->setTextBoxStyle (Slider::TextBoxBelow, false, 80, 20);
+    sliderArcTanPosL->setRange (0.1, 10, 0);
+    sliderArcTanPosL->setSliderStyle (Slider::RotaryVerticalDrag);
+    sliderArcTanPosL->setTextBoxStyle (Slider::TextBoxBelow, false, 30, 20);
     sliderArcTanPosL->setColour (Slider::rotarySliderFillColourId, Colour (0x7f000000));
     sliderArcTanPosL->setColour (Slider::textBoxBackgroundColourId, Colours::white);
     sliderArcTanPosL->addListener (this);
 
     addAndMakeVisible (sliderArcTanNegL = new Slider ("new slider"));
-    sliderArcTanNegL->setRange (0.1, 20, 0);
-    sliderArcTanNegL->setSliderStyle (Slider::Rotary);
-    sliderArcTanNegL->setTextBoxStyle (Slider::TextBoxBelow, false, 80, 20);
+    sliderArcTanNegL->setRange (0.1, 10, 0);
+    sliderArcTanNegL->setSliderStyle (Slider::RotaryVerticalDrag);
+    sliderArcTanNegL->setTextBoxStyle (Slider::TextBoxBelow, false, 30, 20);
     sliderArcTanNegL->setColour (Slider::rotarySliderFillColourId, Colour (0x7f000000));
     sliderArcTanNegL->setColour (Slider::textBoxBackgroundColourId, Colours::white);
     sliderArcTanNegL->addListener (this);
 
     addAndMakeVisible (sliderGainR = new Slider ("new slider"));
     sliderGainR->setRange (0, 1, 0);
-    sliderGainR->setSliderStyle (Slider::Rotary);
-    sliderGainR->setTextBoxStyle (Slider::TextBoxBelow, false, 80, 20);
+    sliderGainR->setSliderStyle (Slider::RotaryVerticalDrag);
+    sliderGainR->setTextBoxStyle (Slider::TextBoxBelow, false, 30, 20);
     sliderGainR->setColour (Slider::rotarySliderFillColourId, Colour (0x7f000000));
     sliderGainR->setColour (Slider::textBoxBackgroundColourId, Colours::white);
     sliderGainR->addListener (this);
 
     addAndMakeVisible (sliderStagesR = new Slider ("new slider"));
-    sliderStagesR->setRange (1, 10, 0);
-    sliderStagesR->setSliderStyle (Slider::Rotary);
-    sliderStagesR->setTextBoxStyle (Slider::TextBoxBelow, false, 80, 20);
+    sliderStagesR->setRange (1, 5, 0);
+    sliderStagesR->setSliderStyle (Slider::RotaryVerticalDrag);
+    sliderStagesR->setTextBoxStyle (Slider::TextBoxBelow, false, 30, 20);
     sliderStagesR->setColour (Slider::rotarySliderFillColourId, Colour (0x7f000000));
     sliderStagesR->setColour (Slider::textBoxBackgroundColourId, Colours::white);
     sliderStagesR->addListener (this);
 
     addAndMakeVisible (sliderArcTanPosR = new Slider ("new slider"));
-    sliderArcTanPosR->setRange (0.1, 20, 0);
-    sliderArcTanPosR->setSliderStyle (Slider::Rotary);
-    sliderArcTanPosR->setTextBoxStyle (Slider::TextBoxBelow, false, 80, 20);
+    sliderArcTanPosR->setRange (0.1, 10, 0);
+    sliderArcTanPosR->setSliderStyle (Slider::RotaryVerticalDrag);
+    sliderArcTanPosR->setTextBoxStyle (Slider::TextBoxBelow, false, 30, 20);
     sliderArcTanPosR->setColour (Slider::rotarySliderFillColourId, Colour (0x7f000000));
     sliderArcTanPosR->setColour (Slider::textBoxBackgroundColourId, Colours::white);
     sliderArcTanPosR->addListener (this);
 
     addAndMakeVisible (sliderArcTanNegR = new Slider ("new slider"));
-    sliderArcTanNegR->setRange (0.1, 20, 0);
-    sliderArcTanNegR->setSliderStyle (Slider::Rotary);
-    sliderArcTanNegR->setTextBoxStyle (Slider::TextBoxBelow, false, 80, 20);
+    sliderArcTanNegR->setRange (0.1, 10, 0);
+    sliderArcTanNegR->setSliderStyle (Slider::RotaryVerticalDrag);
+    sliderArcTanNegR->setTextBoxStyle (Slider::TextBoxBelow, false, 30, 20);
     sliderArcTanNegR->setColour (Slider::rotarySliderFillColourId, Colour (0x7f000000));
     sliderArcTanNegR->setColour (Slider::textBoxBackgroundColourId, Colours::white);
     sliderArcTanNegR->addListener (this);
@@ -166,17 +168,17 @@ void NonLinearAudioProcessorEditor::resized()
     //[/UserPreResize]
 
     sliderGainL->setBounds (48, 24, 80, 80);
-    buttonStagesL->setBounds (16, 40, 24, 24);
+    buttonStagesL->setBounds (312, 48, 24, 24);
     sliderStagesL->setBounds (136, 24, 80, 80);
     sliderArcTanPosL->setBounds (224, 24, 80, 80);
-    sliderArcTanNegL->setBounds (312, 24, 80, 80);
+    sliderArcTanNegL->setBounds (344, 24, 80, 80);
     sliderGainR->setBounds (48, 133, 80, 80);
     sliderStagesR->setBounds (136, 133, 80, 80);
     sliderArcTanPosR->setBounds (224, 133, 80, 80);
-    sliderArcTanNegR->setBounds (312, 133, 80, 80);
-    buttonStagesR->setBounds (16, 160, 24, 24);
-    buttonChannelSwap->setBounds (416, 64, 24, 24);
-    buttonSingleChannel->setBounds (416, 144, 24, 24);
+    sliderArcTanNegR->setBounds (344, 133, 80, 80);
+    buttonStagesR->setBounds (312, 168, 24, 24);
+    buttonChannelSwap->setBounds (440, 104, 24, 24);
+    buttonSingleChannel->setBounds (16, 104, 24, 24);
     //[UserResized] Add your own custom resize handling here..
     //[/UserResized]
 }
@@ -190,49 +192,49 @@ void NonLinearAudioProcessorEditor::sliderValueChanged (Slider* sliderThatWasMov
     {
         //[UserSliderCode_sliderGainL] -- add your slider handling code here..
 		processor.gainLposition = sliderGainL->getValue();
-		//[/UserSliderCode_sliderGainL]
+        //[/UserSliderCode_sliderGainL]
     }
     else if (sliderThatWasMoved == sliderStagesL)
     {
         //[UserSliderCode_sliderStagesL] -- add your slider handling code here..
 		processor.stagesLposition = sliderStagesL->getValue();
-		//[/UserSliderCode_sliderStagesL]
+        //[/UserSliderCode_sliderStagesL]
     }
     else if (sliderThatWasMoved == sliderArcTanPosL)
     {
         //[UserSliderCode_sliderArcTanPosL] -- add your slider handling code here..
 		processor.arcTanPosLposition = sliderArcTanPosL->getValue();
-		//[/UserSliderCode_sliderArcTanPosL]
+        //[/UserSliderCode_sliderArcTanPosL]
     }
     else if (sliderThatWasMoved == sliderArcTanNegL)
     {
         //[UserSliderCode_sliderArcTanNegL] -- add your slider handling code here..
 		processor.arcTanNegLposition = sliderArcTanNegL->getValue();
-		//[/UserSliderCode_sliderArcTanNegL]
+        //[/UserSliderCode_sliderArcTanNegL]
     }
     else if (sliderThatWasMoved == sliderGainR)
     {
         //[UserSliderCode_sliderGainR] -- add your slider handling code here..
 		processor.gainRposition = sliderGainR->getValue();
-		//[/UserSliderCode_sliderGainR]
+        //[/UserSliderCode_sliderGainR]
     }
     else if (sliderThatWasMoved == sliderStagesR)
     {
         //[UserSliderCode_sliderStagesR] -- add your slider handling code here..
 		processor.stagesRposition = sliderStagesR->getValue();
-		//[/UserSliderCode_sliderStagesR]
+        //[/UserSliderCode_sliderStagesR]
     }
     else if (sliderThatWasMoved == sliderArcTanPosR)
     {
         //[UserSliderCode_sliderArcTanPosR] -- add your slider handling code here..
 		processor.arcTanPosRposition = sliderArcTanPosR->getValue();
-		//[/UserSliderCode_sliderArcTanPosR]
+        //[/UserSliderCode_sliderArcTanPosR]
     }
     else if (sliderThatWasMoved == sliderArcTanNegR)
     {
         //[UserSliderCode_sliderArcTanNegR] -- add your slider handling code here..
 		processor.arcTanNegRposition = sliderArcTanNegR->getValue();
-		//[/UserSliderCode_sliderArcTanNegR]
+        //[/UserSliderCode_sliderArcTanNegR]
     }
 
     //[UsersliderValueChanged_Post]
@@ -248,25 +250,25 @@ void NonLinearAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked)
     {
         //[UserButtonCode_buttonStagesL] -- add your button handler code here..
 		processor.stagesL = buttonStagesL->getToggleState();
-		//[/UserButtonCode_buttonStagesL]
+        //[/UserButtonCode_buttonStagesL]
     }
     else if (buttonThatWasClicked == buttonStagesR)
     {
         //[UserButtonCode_buttonStagesR] -- add your button handler code here..
 		processor.stagesR = buttonStagesR->getToggleState();
-		//[/UserButtonCode_buttonStagesR]
+        //[/UserButtonCode_buttonStagesR]
     }
     else if (buttonThatWasClicked == buttonChannelSwap)
     {
         //[UserButtonCode_buttonChannelSwap] -- add your button handler code here..
 		processor.channelSwap = buttonChannelSwap->getToggleState();
-		//[/UserButtonCode_buttonChannelSwap]
+        //[/UserButtonCode_buttonChannelSwap]
     }
     else if (buttonThatWasClicked == buttonSingleChannel)
     {
         //[UserButtonCode_buttonSingleChannel] -- add your button handler code here..
 		processor.singleChannel = buttonSingleChannel->getToggleState();
-		//[/UserButtonCode_buttonSingleChannel]
+        //[/UserButtonCode_buttonSingleChannel]
     }
 
     //[UserbuttonClicked_Post]
@@ -301,55 +303,59 @@ BEGIN_JUCER_METADATA
   <BACKGROUND backgroundColour="ffffffff"/>
   <SLIDER name="new slider" id="4f7f4ba51139aeec" memberName="sliderGainL"
           virtualName="" explicitFocusOrder="0" pos="48 24 80 80" rotarysliderfill="7f000000"
-          textboxbkgd="ffffffff" min="0" max="1" int="0" style="Rotary"
-          textBoxPos="TextBoxBelow" textBoxEditable="1" textBoxWidth="80"
+          textboxbkgd="ffffffff" min="0" max="1" int="0" style="RotaryVerticalDrag"
+          textBoxPos="TextBoxBelow" textBoxEditable="1" textBoxWidth="30"
           textBoxHeight="20" skewFactor="1" needsCallback="1"/>
   <TOGGLEBUTTON name="new toggle button" id="d0999ef3f0c8fbee" memberName="buttonStagesL"
-                virtualName="" explicitFocusOrder="0" pos="16 40 24 24" buttonText=""
+                virtualName="" explicitFocusOrder="0" pos="312 48 24 24" buttonText=""
                 connectedEdges="0" needsCallback="1" radioGroupId="0" state="0"/>
   <SLIDER name="new slider" id="ed64f2b27d92f208" memberName="sliderStagesL"
           virtualName="" explicitFocusOrder="0" pos="136 24 80 80" rotarysliderfill="7f000000"
-          textboxbkgd="ffffffff" min="1" max="10" int="0" style="Rotary"
-          textBoxPos="TextBoxBelow" textBoxEditable="1" textBoxWidth="80"
+          textboxbkgd="ffffffff" min="1" max="5" int="0" style="RotaryVerticalDrag"
+          textBoxPos="TextBoxBelow" textBoxEditable="1" textBoxWidth="30"
           textBoxHeight="20" skewFactor="1" needsCallback="1"/>
   <SLIDER name="new slider" id="d8dc63b8a462c25d" memberName="sliderArcTanPosL"
           virtualName="" explicitFocusOrder="0" pos="224 24 80 80" rotarysliderfill="7f000000"
-          textboxbkgd="ffffffff" min="0.10000000000000000555" max="20"
-          int="0" style="Rotary" textBoxPos="TextBoxBelow" textBoxEditable="1"
-          textBoxWidth="80" textBoxHeight="20" skewFactor="1" needsCallback="1"/>
+          textboxbkgd="ffffffff" min="0.10000000000000000555" max="10"
+          int="0" style="RotaryVerticalDrag" textBoxPos="TextBoxBelow"
+          textBoxEditable="1" textBoxWidth="30" textBoxHeight="20" skewFactor="1"
+          needsCallback="1"/>
   <SLIDER name="new slider" id="dc9e905b77deffd9" memberName="sliderArcTanNegL"
-          virtualName="" explicitFocusOrder="0" pos="312 24 80 80" rotarysliderfill="7f000000"
-          textboxbkgd="ffffffff" min="0.10000000000000000555" max="20"
-          int="0" style="Rotary" textBoxPos="TextBoxBelow" textBoxEditable="1"
-          textBoxWidth="80" textBoxHeight="20" skewFactor="1" needsCallback="1"/>
+          virtualName="" explicitFocusOrder="0" pos="344 24 80 80" rotarysliderfill="7f000000"
+          textboxbkgd="ffffffff" min="0.10000000000000000555" max="10"
+          int="0" style="RotaryVerticalDrag" textBoxPos="TextBoxBelow"
+          textBoxEditable="1" textBoxWidth="30" textBoxHeight="20" skewFactor="1"
+          needsCallback="1"/>
   <SLIDER name="new slider" id="e5359d0300d91cc6" memberName="sliderGainR"
           virtualName="" explicitFocusOrder="0" pos="48 133 80 80" rotarysliderfill="7f000000"
-          textboxbkgd="ffffffff" min="0" max="1" int="0" style="Rotary"
-          textBoxPos="TextBoxBelow" textBoxEditable="1" textBoxWidth="80"
+          textboxbkgd="ffffffff" min="0" max="1" int="0" style="RotaryVerticalDrag"
+          textBoxPos="TextBoxBelow" textBoxEditable="1" textBoxWidth="30"
           textBoxHeight="20" skewFactor="1" needsCallback="1"/>
   <SLIDER name="new slider" id="2e5b1da571e3ee60" memberName="sliderStagesR"
           virtualName="" explicitFocusOrder="0" pos="136 133 80 80" rotarysliderfill="7f000000"
-          textboxbkgd="ffffffff" min="1" max="10" int="0" style="Rotary"
-          textBoxPos="TextBoxBelow" textBoxEditable="1" textBoxWidth="80"
+          textboxbkgd="ffffffff" min="1" max="5" int="0" style="RotaryVerticalDrag"
+          textBoxPos="TextBoxBelow" textBoxEditable="1" textBoxWidth="30"
           textBoxHeight="20" skewFactor="1" needsCallback="1"/>
   <SLIDER name="new slider" id="ea800404147548f0" memberName="sliderArcTanPosR"
           virtualName="" explicitFocusOrder="0" pos="224 133 80 80" rotarysliderfill="7f000000"
-          textboxbkgd="ffffffff" min="0.10000000000000000555" max="20"
-          int="0" style="Rotary" textBoxPos="TextBoxBelow" textBoxEditable="1"
-          textBoxWidth="80" textBoxHeight="20" skewFactor="1" needsCallback="1"/>
+          textboxbkgd="ffffffff" min="0.10000000000000000555" max="10"
+          int="0" style="RotaryVerticalDrag" textBoxPos="TextBoxBelow"
+          textBoxEditable="1" textBoxWidth="30" textBoxHeight="20" skewFactor="1"
+          needsCallback="1"/>
   <SLIDER name="new slider" id="603b589a806fa809" memberName="sliderArcTanNegR"
-          virtualName="" explicitFocusOrder="0" pos="312 133 80 80" rotarysliderfill="7f000000"
-          textboxbkgd="ffffffff" min="0.10000000000000000555" max="20"
-          int="0" style="Rotary" textBoxPos="TextBoxBelow" textBoxEditable="1"
-          textBoxWidth="80" textBoxHeight="20" skewFactor="1" needsCallback="1"/>
+          virtualName="" explicitFocusOrder="0" pos="344 133 80 80" rotarysliderfill="7f000000"
+          textboxbkgd="ffffffff" min="0.10000000000000000555" max="10"
+          int="0" style="RotaryVerticalDrag" textBoxPos="TextBoxBelow"
+          textBoxEditable="1" textBoxWidth="30" textBoxHeight="20" skewFactor="1"
+          needsCallback="1"/>
   <TOGGLEBUTTON name="new toggle button" id="bb98061b73e6a7bf" memberName="buttonStagesR"
-                virtualName="" explicitFocusOrder="0" pos="16 160 24 24" buttonText=""
+                virtualName="" explicitFocusOrder="0" pos="312 168 24 24" buttonText=""
                 connectedEdges="0" needsCallback="1" radioGroupId="0" state="0"/>
   <TOGGLEBUTTON name="new toggle button" id="5b3ba7af13b60a1e" memberName="buttonChannelSwap"
-                virtualName="" explicitFocusOrder="0" pos="416 64 24 24" buttonText=""
+                virtualName="" explicitFocusOrder="0" pos="440 104 24 24" buttonText=""
                 connectedEdges="0" needsCallback="1" radioGroupId="0" state="0"/>
   <TOGGLEBUTTON name="new toggle button" id="e00e7cd8e5280105" memberName="buttonSingleChannel"
-                virtualName="" explicitFocusOrder="0" pos="416 144 24 24" buttonText=""
+                virtualName="" explicitFocusOrder="0" pos="16 104 24 24" buttonText=""
                 connectedEdges="0" needsCallback="1" radioGroupId="0" state="0"/>
 </JUCER_COMPONENT>
 
