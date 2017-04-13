@@ -154,8 +154,9 @@ void NonLinearAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffe
 						channelDataL[i] = ((1.0 / atan(arcTanPosLposition)) * atan(arcTanPosLposition*channelDataL[i])*gainLposition);
 					else
 						channelDataL[i] = ((1.0 / atan(arcTanNegLposition)) * atan(arcTanNegLposition*channelDataL[i])*gainLposition);
-					if (stagesL == true && j % 2 == 0)
+					if (stagesL == true && j % 2 == 0) {
 						channelDataL[i] *= -1.0;
+					}
 				}
 			}
 			for (int i = 0; i < numSamples; ++i)
@@ -183,8 +184,9 @@ void NonLinearAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffe
 						channelDataR[i] = ((1.0 / atan(arcTanPosLposition)) * atan(arcTanPosLposition*channelDataR[i])*gainLposition);
 					else
 						channelDataR[i] = ((1.0 / atan(arcTanNegLposition)) * atan(arcTanNegLposition*channelDataR[i])*gainLposition);
-					if (stagesL == true && j % 2 == 0)
+					if (stagesL == true && j % 2 == 0) {
 						channelDataR[i] *= -1.0;
+					}
 				}
 			}
 			for (int i = 0; i < numSamples; ++i)
@@ -214,8 +216,9 @@ void NonLinearAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffe
 						channelDataL[i] = ((1.0 / atan(arcTanPosLposition)) * atan(arcTanPosLposition*channelDataL[i])*gainLposition);
 					else
 						channelDataL[i] = ((1.0 / atan(arcTanNegLposition)) * atan(arcTanNegLposition*channelDataL[i])*gainLposition);
-					if (stagesL == true && j % 2 == 0)
+					if (stagesL == true && j % 2 == 0) {
 						channelDataL[i] *= -1.0;
+					}
 				}
 			}
 			for (int i = 0; i < numSamples; ++i)
@@ -243,8 +246,9 @@ void NonLinearAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffe
 						channelDataR[i] = ((1.0 / atan(arcTanPosRposition)) * atan(arcTanPosRposition*channelDataR[i])*gainRposition);
 					else
 						channelDataR[i] = ((1.0 / atan(arcTanNegRposition)) * atan(arcTanNegRposition*channelDataR[i])*gainRposition);
-					if (stagesR == true && j % 2 == 0)
+					if (stagesR == true && j % 2 == 0) {
 						channelDataR[i] *= -1.0;
+					}
 				}
 			}
 			for (int i = 0; i < numSamples; ++i)
