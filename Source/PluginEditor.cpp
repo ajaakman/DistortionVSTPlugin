@@ -247,25 +247,25 @@ void NonLinearAudioProcessorEditor::buttonClicked (Button* buttonThatWasClicked)
     if (buttonThatWasClicked == buttonStagesL)
     {
         //[UserButtonCode_buttonStagesL] -- add your button handler code here..
-		processor.stagesL = buttonStagesL->isDown();
+		processor.stagesL = buttonStagesL->getToggleState();
 		//[/UserButtonCode_buttonStagesL]
     }
     else if (buttonThatWasClicked == buttonStagesR)
     {
         //[UserButtonCode_buttonStagesR] -- add your button handler code here..
-		processor.stagesR = buttonStagesR->isDown();
+		processor.stagesR = buttonStagesR->getToggleState();
 		//[/UserButtonCode_buttonStagesR]
     }
     else if (buttonThatWasClicked == buttonChannelSwap)
     {
         //[UserButtonCode_buttonChannelSwap] -- add your button handler code here..
-		processor.channelSwap = buttonChannelSwap->isDown();
+		processor.channelSwap = buttonChannelSwap->getToggleState();
 		//[/UserButtonCode_buttonChannelSwap]
     }
     else if (buttonThatWasClicked == buttonSingleChannel)
     {
         //[UserButtonCode_buttonSingleChannel] -- add your button handler code here..
-		processor.singleChannel = buttonSingleChannel->isDown();
+		processor.singleChannel = buttonSingleChannel->getToggleState();
 		//[/UserButtonCode_buttonSingleChannel]
     }
 
