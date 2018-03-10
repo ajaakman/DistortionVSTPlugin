@@ -1,4 +1,4 @@
-# aap-coursework-ajaakman
+# aap-coursework-ajaakman 
 aap-coursework-ajaakman created by GitHub Classroom
 
 
@@ -35,3 +35,4 @@ will allow you to fine tune the sound to your exact taste.
 
 Designed and Created by Artur Jaakman
 Algorithm based on chapter 14.3 of 'Designing Audio Effect Plug-Ins in C++', by Will Pirkle.
+
